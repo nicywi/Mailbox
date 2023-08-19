@@ -5,18 +5,18 @@ import java.util.List;
 
 public class MailService {
 
-   private final List<Inbox> inboxes = new ArrayList<>();
-   private final List<Inbox> mails = new ArrayList<>();
+    private final List<Inbox> inboxes = new ArrayList<>();
+    private final List<Mail> mails = new ArrayList<Mail>();
 
-    public void send(Mail mail){
-
+    public void send(Mail mail) {
+        mails.add(mail);
     }
 
     public List<Inbox> getInboxes() {
         return inboxes;
     }
 
-    public List<Inbox> getMails() {
+    public List<Mail> getMails() {
         return mails;
     }
 }

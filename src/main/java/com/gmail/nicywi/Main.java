@@ -13,24 +13,49 @@ public class Main {
         int choose = scanner.nextInt();
         UserDatabase userDatabase = new UserDatabase();
 
-        if (choose == 1) 
+        if (choose == 1) {
 
-            }
+            Scanner scanner2 = new Scanner(System.in);
 
+            System.out.println("LOGOWANIE");
 
-            MailService mailService1 = new MailService();
+            System.out.println("Podaj login: ");
+            String login = scanner2.nextLine();
+            System.out.println("Podaj hasło: ");
+            String password = scanner2.nextLine();
+            userDatabase.login(login, password);
+        } else if (choose == 2) {
+            Scanner scanner3 = new Scanner(System.in);
 
-            User user1 = new User("John", "john@gmail.com");
-            Inbox inbox1 = new Inbox(user1);
-            mailService1.getInboxes().add(inbox1);
+            System.out.println("NOWY USER");
 
-            User user2 = new User("Anna", "anna@gmail.com");
-            Inbox inbox2 = new Inbox(user2);
-            mailService1.getInboxes().add(inbox2);
+            System.out.println("Podaj login: ");
+            String login = scanner3.nextLine();
+            System.out.println("Podaj hasło: ");
+            String password = scanner3.nextLine();
+            System.out.println("Podaj imie: ");
+            String name = scanner3.nextLine();
+            System.out.println("Podaj email adres: ");
+            String emailaddres = scanner3.nextLine();
 
-            Mail mail1 = new Mail("Wedding invitation", "Hi Anna blabla", LocalDate.now(), user1, user2);
-            Mail mail2 = new Mail("Wedding reply", "Hi John blabla", LocalDate.now(), user2, user1);
-
-
+            userDatabase.addUser(login, password, name, emailaddres);
         }
+
+        MailService mailService1 = new MailService();
+
+        User user1 = new User("John", "john@gmail.com", "john123", "hasloJohna");
+        Inbox inbox1 = new Inbox(user1);
+        mailService1.getInboxes().add(inbox1);
+
+        User user2 = new User("Anna", "anna@gmail.com", "anna123", "hasloAnny");
+        Inbox inbox2 = new Inbox(user2);
+        mailService1.getInboxes().add(inbox2);
+
+        Mail mail1 = new Mail("Wedding invitation", "Hi Anna blabla", LocalDate.now(), user1, user2);
+        Mail mail2 = new Mail("Wedding reply", "Hi John blabla", LocalDate.now(), user2, user1);
+
+        mailService1.send(mail1);
+
+
     }
+}
