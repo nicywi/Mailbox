@@ -6,11 +6,15 @@ public class Mail {
     private String title;
     private String description;
     private LocalDate date;
+    private User sender;
+    private User receiver;
 
-    public Mail(String title, String description, LocalDate date) {
+    public Mail(String title, String description, LocalDate date, User sender, User receiver) {
         this.title = title;
         this.description = description;
         this.date = date;
+        this.sender = sender;
+        this.receiver = receiver;
     }
 
     public String getTitle() {
@@ -36,4 +40,22 @@ public class Mail {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public User getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
+    }
 }
+
+
