@@ -12,6 +12,8 @@ public class MailService {
         mails.add(mail);
     }
 
+
+
     public List<Inbox> getInboxes() {
         return inboxes;
     }

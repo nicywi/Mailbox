@@ -6,13 +6,13 @@ import java.util.Map;
 public class UserDatabase {
     private Map<String, User> users = new HashMap<>();
 
-    public void addUser(String login, String password, String name, String emailAdress) {
+    public boolean addUser(String login, String password, String name, String emailAdress) {
         if (!users.containsKey(login)) {
             User user = new User(login, password, name, emailAdress);
             users.put(login, user);
-            System.out.println("Rejestracja loginu przebiegła pomyślnie");
+            return true;
         } else {
-            System.out.println("Login już istnieje");
+            return false;
         }
     }
 
