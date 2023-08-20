@@ -5,8 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-
+    public static User startMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("wybierz opcje");
         System.out.println("1-login");
@@ -41,7 +40,11 @@ public class Main {
 
             userDatabase.addUser(login, password, name, emailaddres);
         }
+        return new User("Kasia", "kasia@wp.pl", "kassia", "kasia123");
+    }
 
+    public static void main(String[] args) {
+        startMenu();
         MailService mailService1 = new MailService();
 
         User user1 = new User("John", "john@gmail.com", "john123", "hasloJohna");
