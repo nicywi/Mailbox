@@ -13,7 +13,7 @@ public class MailService {
     }
     public List<Mail> getReceivedEmails (User user){
 
-        List<Mail> receivedEmails =null;
+        List<Mail> receivedEmails = new ArrayList<>();
 
         for (Mail mail: mails) {
             if(mail.getReceiver().getLogin().equals(user.getLogin())){
@@ -25,7 +25,7 @@ public class MailService {
 
     public List<Mail> getSentEmails (User user){
 
-        List<Mail> sentEmails =null;
+        List<Mail> sentEmails = new ArrayList<>();
 
         for (Mail mail: mails) {
             if(mail.getSender().getLogin().equals(user.getLogin())){

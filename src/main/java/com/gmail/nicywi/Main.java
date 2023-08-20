@@ -1,6 +1,7 @@
 package com.gmail.nicywi;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -55,6 +56,11 @@ public class Main {
         Mail mail2 = new Mail("Wedding reply", "Hi John blabla", LocalDate.now(), user2, user1);
 
         mailService1.send(mail1);
+        mailService1.send(mail2);
+        System.out.println((mailService1.getReceivedEmails(user1)));
+
+        System.out.println("GET SENT TEST");
+        System.out.println((mailService1.getSentEmails(user1)));
 
 
     }

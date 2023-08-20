@@ -56,6 +56,17 @@ public class Mail {
     public void setReceiver(User receiver) {
         this.receiver = receiver;
     }
+
+    @Override
+    public String toString() {
+        return "Mail{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                ", sender=" + sender.getName() +
+                ", receiver=" + receiver.getName() +
+                '}';
+    }
 }
 
 

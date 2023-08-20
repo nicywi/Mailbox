@@ -5,7 +5,7 @@ import java.util.List;
 public class Inbox {
 
     User user;
-    List<Mail> received;
+    //List<Mail> received;
 
     public Inbox(User user) {
         this.user = user;
