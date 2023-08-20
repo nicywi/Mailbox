@@ -49,7 +49,8 @@ public class Main {
         int choose = scanner.nextInt();
         return (choose == 1) ? login() : newUser();
     }
-    public static void getMenu() {
+
+    public static void getMenu(User user) {
         do {
             System.out.println(" ");
             System.out.println("Wybierz opcje");
@@ -59,11 +60,12 @@ public class Main {
             System.out.println("4-Wyjdź ze skrzynki");
             int choose2 = scanner.nextInt();
 
-
+            Mail mail = new Mail();
             switch (choose2) {
                 case 1:
-//                    mailService.send();
+                    mailService.send(mail.createMail(user));
 //                    mailService.send(mail2);
+                    //mail.createMail();
                     break;
                 case 2:
 //                    System.out.println((mailService.getReceivedEmails(user1)));
@@ -102,7 +104,7 @@ public class Main {
         //mailService.send(mail1);
         //mailService.send(mail2);
 
-        getUser();
-        getMenu();
+        getMenu(getUser());
     }
+
 }

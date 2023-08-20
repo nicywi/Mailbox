@@ -1,6 +1,7 @@
 package com.gmail.nicywi;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Mail {
     private String title;
@@ -17,6 +18,18 @@ public class Mail {
         this.receiver = receiver;
     }
 
+    public Mail() {
+    }
+
+    Scanner scanner = new Scanner(System.in);
+    public Mail createMail(User user){
+        System.out.println("Podaj tytyl: ");
+        title = scanner.nextLine();
+        System.out.println("Podaj treść maila: ");
+        description = scanner.nextLine();
+        LocalDate date1 = null;
+        return new Mail(title, description, date1, user, receiver);
+    }
     public String getTitle() {
         return title;
     }
