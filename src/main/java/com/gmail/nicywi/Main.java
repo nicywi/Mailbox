@@ -3,6 +3,7 @@ package com.gmail.nicywi;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -55,12 +56,12 @@ public class Main {
         System.out.println("Do kogo chcesz wyslac?");
         String name = scanner.nextLine();
 
-        if(userDatabase.getUsers().containsKey(name)){
-            return userDatabase.
-        }else {
-            return
+        for (User user : userDatabase.getUsers().values()) {
+            if (user.getName().equals(name)) {
+                return user;
+            }
         }
-        return new User();
+        return null;
     }
 
     public static void getMenu(User user) {
@@ -73,21 +74,17 @@ public class Main {
             System.out.println("4-Wyjdź ze skrzynki");
             int choose2 = scanner.nextInt();
 
-            Mail mail = new Mail();
             switch (choose2) {
                 case 1:
-                    //findUser
                     User receiver = findUser();
-                    mailService.send(createMail(user,receiver));
-//                    mailService.send(mail2);
-                    //mail.createMail();
+                    mailService.send(createMail(user, receiver));
                     break;
                 case 2:
-//                    System.out.println((mailService.getReceivedEmails(user1)));
+                    System.out.println((mailService.getReceivedEmails(user)));
                     break;
                 case 3:
-//                    System.out.println("GET SENT TEST");
-//                    System.out.println((mailService.getSentEmails(user1)));
+                    System.out.println("GET SENT TEST");
+                    System.out.println((mailService.getSentEmails(user)));
                     break;
                 case 4:
                     System.out.println("Do zobaczenia");
@@ -100,7 +97,7 @@ public class Main {
 
     }
 
-    public static Mail createMail(User user, User receiver){
+    public static Mail createMail(User user, User receiver) {
         System.out.println("Podaj tytyl: ");
         String title = scanner.nextLine();
         System.out.println("Podaj treść maila: ");
@@ -109,6 +106,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
+
+        findUser();
 
         User user1 = new User("John", "john@gmail.com", "john123", "hasloJohna");
         userDatabase.addUserTest("John", "john@gmail.com", "john123", "hasloJohna");
@@ -120,11 +119,8 @@ public class Main {
         Inbox inbox2 = new Inbox(user2);
         mailService.getInboxes().add(inbox2);
 
-        Mail mail1 = new Mail("Wedding invitation", "Hi Anna blabla", LocalDate.now(), user1, user2);
-        Mail mail2 = new Mail("Wedding reply", "Hi John blabla", LocalDate.now(), user2, user1);
-
-        //mailService.send(mail1);
-        //mailService.send(mail2);
+        Mail mail1 = new Mail("Wedding invitation", "Hi Anna blabla", LocalDateTime.now(), user1, user2);
+        Mail mail2 = new Mail("Wedding reply", "Hi John blabla", LocalDateTime.now(), user2, user1);
 
         getMenu(getUser());
 
