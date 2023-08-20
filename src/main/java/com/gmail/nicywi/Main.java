@@ -11,6 +11,7 @@ public class Main {
 
     public static User login() {
         System.out.println("LOGOWANIE");
+        scanner.nextLine();
         System.out.println("Podaj login: ");
         String login = scanner.nextLine();
         System.out.println("Podaj hasło: ");
@@ -20,6 +21,7 @@ public class Main {
 
     public static User newUser() {
         System.out.println("NOWY USER");
+        scanner.nextLine();
         System.out.println("Podaj login: ");
         String login = scanner.nextLine();
         System.out.println("Podaj hasło: ");
@@ -37,6 +39,48 @@ public class Main {
             System.out.println("Dodawanie nie powioslo sie");
         }
         return new User(name, emailaddres, login, password);
+    }
+
+    public static User getUser() {
+        //MENU LOGIN VS NEW USER
+        System.out.println("wybierz opcje");
+        System.out.println("1-login");
+        System.out.println("2-new user");
+        int choose = scanner.nextInt();
+        return (choose == 1) ? login() : newUser();
+    }
+    public static void getMenu() {
+        do {
+            System.out.println(" ");
+            System.out.println("Wybierz opcje");
+            System.out.println("1-Wyślij maila");
+            System.out.println("2-Wyświetl otrzymane maile");
+            System.out.println("3-Wyświetl wysłane maile");
+            System.out.println("4-Wyjdź ze skrzynki");
+            int choose2 = scanner.nextInt();
+
+
+            switch (choose2) {
+                case 1:
+//                    mailService.send();
+//                    mailService.send(mail2);
+                    break;
+                case 2:
+//                    System.out.println((mailService.getReceivedEmails(user1)));
+                    break;
+                case 3:
+//                    System.out.println("GET SENT TEST");
+//                    System.out.println((mailService.getSentEmails(user1)));
+                    break;
+                case 4:
+                    System.out.println("Do zobaczenia");
+                    return;
+                default:
+                    System.out.println("Błąd wyboru");
+            }
+        } while (true);
+
+
     }
 
 
@@ -58,48 +102,7 @@ public class Main {
         //mailService.send(mail1);
         //mailService.send(mail2);
 
-        //MENU LOGIN VS NEW USER
-        System.out.println("wybierz opcje");
-        System.out.println("1-login");
-        System.out.println("2-new user");
-        int choose = scanner.nextInt();
-
-        if (choose == 1) {
-            login();
-        } else if (choose == 2) {
-            newUser();
-        }
-
-        do {
-            System.out.println(" ");
-            System.out.println("Wybierz opcje");
-            System.out.println("1-Wyślij maila");
-            System.out.println("2-Wyświetl otrzymane maile");
-            System.out.println("3-Wyświetl wysłane maile");
-            System.out.println("4-Wyjdź ze skrzynki");
-            int choose2 = scanner.nextInt();
-
-
-            switch (choose2) {
-                case 1:
-                    mailService.send(mail1);
-                    mailService.send(mail2);
-                    break;
-                case 2:
-                    System.out.println((mailService.getReceivedEmails(user1)));
-                    break;
-                case 3:
-                    System.out.println("GET SENT TEST");
-                    System.out.println((mailService.getSentEmails(user1)));
-                    break;
-                case 4:
-                    System.out.println("Do zobaczenia");
-                    return;
-                default:
-                    System.out.println("Błąd wyboru");
-            }
-        } while (true);
-
-
+        getUser();
+        getMenu();
     }
 }
