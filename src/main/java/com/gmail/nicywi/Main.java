@@ -1,6 +1,7 @@
 package com.gmail.nicywi;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Main {
@@ -50,6 +51,18 @@ public class Main {
         return (choose == 1) ? login() : newUser();
     }
 
+    public static User findUser() {
+        System.out.println("Do kogo chcesz wyslac?");
+        String name = scanner.nextLine();
+
+        if(userDatabase.getUsers().containsKey(name)){
+            return userDatabase.
+        }else {
+            return
+        }
+        return new User();
+    }
+
     public static void getMenu(User user) {
         do {
             System.out.println(" ");
@@ -63,7 +76,9 @@ public class Main {
             Mail mail = new Mail();
             switch (choose2) {
                 case 1:
-                    mailService.send(mail.createMail(user));
+                    //findUser
+                    User receiver = findUser();
+                    mailService.send(createMail(user,receiver));
 //                    mailService.send(mail2);
                     //mail.createMail();
                     break;
@@ -85,6 +100,13 @@ public class Main {
 
     }
 
+    public static Mail createMail(User user, User receiver){
+        System.out.println("Podaj tytyl: ");
+        String title = scanner.nextLine();
+        System.out.println("Podaj treść maila: ");
+        String description = scanner.nextLine();
+        return new Mail(title, description, LocalDateTime.now(), user, receiver);
+    }
 
     public static void main(String[] args) {
 
@@ -105,6 +127,7 @@ public class Main {
         //mailService.send(mail2);
 
         getMenu(getUser());
+
     }
 
 }

@@ -25,5 +25,9 @@ public class UserDatabase {
         }
         return null;
     }
+
+    public Map<String, User> getUsers() {
+        return users;
+    }
 }
 

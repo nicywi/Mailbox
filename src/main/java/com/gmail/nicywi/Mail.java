@@ -1,16 +1,17 @@
 package com.gmail.nicywi;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Mail {
     private String title;
     private String description;
-    private LocalDate date;
+    private LocalDateTime date;
     private User sender;
     private User receiver;
 
-    public Mail(String title, String description, LocalDate date, User sender, User receiver) {
+    public Mail(String title, String description, LocalDateTime date, User sender, User receiver) {
         this.title = title;
         this.description = description;
         this.date = date;
@@ -22,14 +23,7 @@ public class Mail {
     }
 
     Scanner scanner = new Scanner(System.in);
-    public Mail createMail(User user){
-        System.out.println("Podaj tytyl: ");
-        title = scanner.nextLine();
-        System.out.println("Podaj treść maila: ");
-        description = scanner.nextLine();
-        LocalDate date1 = null;
-        return new Mail(title, description, date1, user, receiver);
-    }
+
     public String getTitle() {
         return title;
     }
@@ -46,11 +40,11 @@ public class Mail {
         this.description = description;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
