@@ -6,38 +6,39 @@ import java.util.Scanner;
 public class Main {
 
     private static final UserDatabase userDatabase = new UserDatabase();
+    private static final Scanner scanner = new Scanner(System.in);
     private static final MailService mailService = new MailService();
+
     public static User login() {
-        Scanner scanner2 = new Scanner(System.in);
         System.out.println("LOGOWANIE");
         System.out.println("Podaj login: ");
-        String login = scanner2.nextLine();
+        String login = scanner.nextLine();
         System.out.println("Podaj hasło: ");
-        String password = scanner2.nextLine();
+        String password = scanner.nextLine();
         return userDatabase.loginTest(login, password);
     }
 
-    public static User newUser(){
-        Scanner scanner3 = new Scanner(System.in);
+    public static User newUser() {
         System.out.println("NOWY USER");
         System.out.println("Podaj login: ");
-        String login = scanner3.nextLine();
+        String login = scanner.nextLine();
         System.out.println("Podaj hasło: ");
-        String password = scanner3.nextLine();
+        String password = scanner.nextLine();
         System.out.println("Podaj imie: ");
-        String name = scanner3.nextLine();
+        String name = scanner.nextLine();
         System.out.println("Podaj email adres: ");
-        String emailaddres = scanner3.nextLine();
+        String emailaddres = scanner.nextLine();
 
         boolean addUserSuccess = userDatabase.addUserTest(login, password, name, emailaddres);
 
-        if(addUserSuccess){
+        if (addUserSuccess) {
             System.out.println("Dodawanie uzytkownika przegieglo pomyslnie");
-        }else{
+        } else {
             System.out.println("Dodawanie nie powioslo sie");
         }
         return new User(name, emailaddres, login, password);
     }
+
 
     public static void main(String[] args) {
 
@@ -54,9 +55,10 @@ public class Main {
         Mail mail1 = new Mail("Wedding invitation", "Hi Anna blabla", LocalDate.now(), user1, user2);
         Mail mail2 = new Mail("Wedding reply", "Hi John blabla", LocalDate.now(), user2, user1);
 
+        //mailService.send(mail1);
+        //mailService.send(mail2);
 
         //MENU LOGIN VS NEW USER
-        Scanner scanner = new Scanner(System.in);
         System.out.println("wybierz opcje");
         System.out.println("1-login");
         System.out.println("2-new user");
@@ -65,18 +67,39 @@ public class Main {
         if (choose == 1) {
             login();
         } else if (choose == 2) {
-           newUser();
+            newUser();
         }
 
-        //TEST SEND EMAILS
-        mailService.send(mail1);
-        mailService.send(mail2);
+        do {
+            System.out.println(" ");
+            System.out.println("Wybierz opcje");
+            System.out.println("1-Wyślij maila");
+            System.out.println("2-Wyświetl otrzymane maile");
+            System.out.println("3-Wyświetl wysłane maile");
+            System.out.println("4-Wyjdź ze skrzynki");
+            int choose2 = scanner.nextInt();
 
-        //TEST GETRECEIVED EMAILS METHOD & GETSENTEMAILS METHOD
-        System.out.println((mailService.getReceivedEmails(user1)));
 
-        System.out.println("GET SENT TEST");
-        System.out.println((mailService.getSentEmails(user1)));
+            switch (choose2) {
+                case 1:
+                    mailService.send(mail1);
+                    mailService.send(mail2);
+                    break;
+                case 2:
+                    System.out.println((mailService.getReceivedEmails(user1)));
+                    break;
+                case 3:
+                    System.out.println("GET SENT TEST");
+                    System.out.println((mailService.getSentEmails(user1)));
+                    break;
+                case 4:
+                    System.out.println("Do zobaczenia");
+                    return;
+                default:
+                    System.out.println("Błąd wyboru");
+            }
+        } while (true);
+
 
     }
 }

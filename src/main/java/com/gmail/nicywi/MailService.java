@@ -9,6 +9,7 @@ public class MailService {
 
     public void send(Mail mail) {
         mails.add(mail);
+        System.out.println("Mail został wysłany");
     }
 
     public List<Mail> getReceivedEmails(User user) {
