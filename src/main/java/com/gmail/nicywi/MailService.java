@@ -12,20 +12,15 @@ public class MailService {
     }
 
     public List<Mail> getReceivedEmails(User user) {
-        List<Mail> receivedEmails = new ArrayList<>();
-
-        mails.stream().filter(mail -> mail.getReceiver().getLogin().equals(user.getLogin()))
-                .forEach(receivedEmails::add);
-
-        return receivedEmails;
+        return mails.stream()
+                .filter(mail -> mail.getReceiver().getLogin().equals(user.getLogin()))
+                .toList();
     }
 
     public List<Mail> getSentEmails(User user) {
-        List<Mail> sentEmails = new ArrayList<>();
-
-        mails.stream().filter(mail -> mail.getSender().getLogin().equals(user.getLogin()))
-                .forEach(sentEmails::add);
-        return sentEmails;
+        return mails.stream()
+                .filter(mail -> mail.getSender().getLogin().equals(user.getLogin()))
+                .toList();
     }
 
     public List<Inbox> getInboxes() {

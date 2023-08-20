@@ -6,9 +6,9 @@ import java.util.Map;
 public class UserDatabase {
     private Map<String, User> users = new HashMap<>();
 
-    public boolean addUser(String login, String password, String name, String emailAdress) {
+    public boolean addUserTest(String name, String emailAdress, String login, String password) {
         if (!users.containsKey(login)) {
-            User user = new User(login, password, name, emailAdress);
+            User user = new User(name, emailAdress, login, password);
             users.put(login, user);
             return true;
         } else {
@@ -16,12 +16,14 @@ public class UserDatabase {
         }
     }
 
-    public boolean login(String login, String password) {
+    public User loginTest(String login, String password) {
         if (users.containsKey(login)) {
             User user = users.get(login);
-            return user.getPassword().equals(password);
+            if(user.getPassword().equals(password)){
+                return user;
+            }
         }
-        return false;
+        return null;
     }
 }
 

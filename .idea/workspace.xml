@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba075d53-67ff-4c31-b876-2ded1b1739b9" name="Changes" comment="Main updates x 2">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_08_2023__12_10__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_08_2023__12_10__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_08_2023__12_12__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_08_2023__12_12__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/MailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/MailService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/UserDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/UserDatabase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
