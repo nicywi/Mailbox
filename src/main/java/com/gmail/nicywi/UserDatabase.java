@@ -3,6 +3,8 @@ package com.gmail.nicywi;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.gmail.nicywi.Main.newUser;
+
 public class UserDatabase {
     private Map<String, User> users = new HashMap<>();
 
@@ -23,7 +25,7 @@ public class UserDatabase {
                 return user;
             }
         }
-        return null;
+        return newUser();
     }
 
     public Map<String, User> getUsers() {
