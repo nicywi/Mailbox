@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import static com.gmail.nicywi.EmailValidator.isValidEmail;
+
 public class Main {
 
     private static final UserDatabase userDatabase = new UserDatabase();
@@ -33,6 +35,15 @@ public class Main {
         System.out.println("Podaj email adres: ");
         String emailaddres = scanner.nextLine();
 
+        while (!isValidEmail(emailaddres)) {
+            System.out.println(emailaddres + " jest niepoprawnym.");
+            System.out.println("Podaj email adres: ");
+            emailaddres = scanner.nextLine();
+        }
+            System.out.println(emailaddres + " jest poprawnym adresem e-mail.");
+
+
+
         boolean addUserSuccess = userDatabase.addUserTest(login, password, name, emailaddres);
 
         if (addUserSuccess) {
@@ -49,7 +60,15 @@ public class Main {
         String name = scanner.nextLine();
         System.out.println("Podaj email adres receivera: ");
         String emailaddres = scanner.nextLine();
+
+        while (!isValidEmail(emailaddres)) {
+            System.out.println(emailaddres + " jest niepoprawnym.");
+            System.out.println("Podaj email adres: ");
+            emailaddres = scanner.nextLine();
+        }
+        System.out.println(emailaddres + " jest poprawnym adresem e-mail.");
         return new User(name, emailaddres);
+
     }
 
     public static User getUser() {
