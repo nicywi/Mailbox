@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba075d53-67ff-4c31-b876-2ded1b1739b9" name="Changes" comment="finUser ver 2">
+    <list default="true" id="ba075d53-67ff-4c31-b876-2ded1b1739b9" name="Changes" comment="finUser ver 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/Mail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/MailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/MailService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/UserDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/nicywi/UserDatabase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,12 +22,10 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2UCFpWMbneDSnh0D81OqCYWvJpn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -120,15 +116,7 @@
       <option name="project" value="LOCAL" />
       <updated>1692537197252</updated>
     </task>
-    <task id="LOCAL-00007" summary="finUser ver 2">
-      <option name="closed" value="true" />
-      <created>1692540835864</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1692540835864</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -148,7 +136,6 @@
     <MESSAGE value="Main updates x 2" />
     <MESSAGE value="getNewUser i getMenu" />
     <MESSAGE value="finUser ver 1" />
-    <MESSAGE value="finUser ver 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="finUser ver 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="finUser ver 1" />
   </component>
 </project>

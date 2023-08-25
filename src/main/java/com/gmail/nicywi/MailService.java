@@ -23,6 +23,13 @@ public class MailService {
                 .filter(mail -> mail.getSender().getLogin().equals(user.getLogin()))
                 .toList();
     }
+    public String deleteRecivedEmails(User user) {
+        List <Mail> operationList = mails.stream()
+                .filter(mail -> mail.getReceiver().getLogin().equals(user.getLogin()))
+                .toList();
+        mails.removeAll(operationList);
+        return "Maile zostały usunięte";
+    }
 
     public List<Inbox> getInboxes() {
         return inboxes;

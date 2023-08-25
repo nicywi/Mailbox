@@ -80,7 +80,8 @@ public class Main {
             System.out.println("1-Wyślij maila");
             System.out.println("2-Wyświetl otrzymane maile");
             System.out.println("3-Wyświetl wysłane maile");
-            System.out.println("4-Wyjdź ze skrzynki");
+            System.out.println("4-Usuń wszystkie otrzymane maile");
+            System.out.println("5-Wyjdź ze skrzynki");
             int choose2 = scanner.nextInt();
 
             switch (choose2) {
@@ -95,6 +96,9 @@ public class Main {
                     System.out.println((mailService.getSentEmails(user)));
                     break;
                 case 4:
+                    System.out.println((mailService.deleteRecivedEmails(user)));
+                    break;
+                case 5:
                     System.out.println("Do zobaczenia");
                     return;
                 default:
@@ -113,15 +117,22 @@ public class Main {
         return new Mail(title, description, LocalDateTime.now(), user, receiver);
     }
 
+
+
     public static void main(String[] args) {
-        userDatabase.addUserTest("John", "john@gmail.com", "john123", "hasloJohna");
+        User user = new User ("John", "john@gmail.com", "john123", "hasloJohna");
+        String login = "john123";
+        userDatabase.getUsers().put(login, user);
 
        // Inbox inbox1 = new Inbox(user1);
         //.getInboxes().add(inbox1);
 
-        //User user2 = new User("Anna", "anna@gmail.com", "anna123", "hasloAnny");
+        User user2 = new User("Anna", "anna@gmail.com", "anna123", "hasloAnny");
         //Inbox inbox2 = new Inbox(user2);
        // mailService.getInboxes().add(inbox2);
+
+        Mail mail = new Mail("Tytuł", "Treść maila", LocalDateTime.now(), user2, new User("John","john@gmail.com", "john123", "hasloJohna"));
+        mailService.send(mail);
 
         getMenu(getUser());
 
