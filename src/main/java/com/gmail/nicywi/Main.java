@@ -1,9 +1,7 @@
 package com.gmail.nicywi;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 import static com.gmail.nicywi.EmailValidator.isValidEmail;
 
@@ -16,33 +14,31 @@ public class Main {
     public static User login() {
         System.out.println("LOGOWANIE");
         scanner.nextLine();
-        System.out.println("Podaj login: ");
+        System.out.print("Podaj login: ");
         String login = scanner.nextLine();
-        System.out.println("Podaj hasło: ");
+        System.out.print("Podaj hasło: ");
         String password = scanner.nextLine();
         return userDatabase.loginTest(login, password);
     }
 
     public static User newUser() {
-        System.out.println("NOWY USER");
+        System.out.println("TWORZENIE NOWEGO UŻYTKOWNIKA");
         scanner.nextLine();
-        System.out.println("Podaj login: ");
+        System.out.print("Podaj login: ");
         String login = scanner.nextLine();
-        System.out.println("Podaj hasło: ");
+        System.out.print("Podaj hasło: ");
         String password = scanner.nextLine();
-        System.out.println("Podaj imie: ");
+        System.out.print("Podaj imię: ");
         String name = scanner.nextLine();
-        System.out.println("Podaj email adres: ");
+        System.out.print("Podaj email adres: ");
         String emailaddres = scanner.nextLine();
 
         while (!isValidEmail(emailaddres)) {
-            System.out.println(emailaddres + " jest niepoprawnym.");
-            System.out.println("Podaj email adres: ");
+            System.out.println(emailaddres + " jest niepoprawnym adresem e-mail.");
+            System.out.println("Podaj inny adres email: ");
             emailaddres = scanner.nextLine();
         }
             System.out.println(emailaddres + " jest poprawnym adresem e-mail.");
-
-
 
         boolean addUserSuccess = userDatabase.addUserTest(login, password, name, emailaddres);
 
@@ -55,25 +51,26 @@ public class Main {
     }
 
     public static User newReceiver() {
-        System.out.println("NOWY RECEIVER");
-        System.out.println("Podaj imie receivera: ");
+        System.out.println("NOWY ODBIORCA");
+        System.out.println("Podaj imie odbiorcy: ");
         String name = scanner.nextLine();
-        System.out.println("Podaj email adres receivera: ");
+        System.out.println("Podaj adres email odbiorcy: ");
         String emailaddres = scanner.nextLine();
 
         while (!isValidEmail(emailaddres)) {
-            System.out.println(emailaddres + " jest niepoprawnym.");
-            System.out.println("Podaj email adres: ");
+            System.out.println(emailaddres + " jest niepoprawnym adresem e-mail.");
+            System.out.println("Podaj adres email: ");
             emailaddres = scanner.nextLine();
         }
         System.out.println(emailaddres + " jest poprawnym adresem e-mail.");
-        return new User(name, emailaddres);
-
+        System.out.println("Podaj username odbiorcy: ");
+        String login = scanner.nextLine();
+        return new User(name, emailaddres, login);
     }
 
     public static User getUser() {
         //MENU LOGIN VS NEW USER
-        System.out.println("wybierz opcje");
+        System.out.println("Wybierz opcje: ");
         System.out.println("1-login");
         System.out.println("2-new user");
         int choose = scanner.nextInt();
@@ -81,7 +78,7 @@ public class Main {
     }
 
     public static User findUser() {
-        System.out.println("Do kogo chcesz wyslac?");
+        System.out.println("Do kogo chcesz wysłać maila?");
         scanner.nextLine();
         String name = scanner.nextLine();
 
@@ -96,7 +93,7 @@ public class Main {
     public static void getMenu(User user) {
         do {
             System.out.println(" ");
-            System.out.println("Wybierz opcje");
+            System.out.println("Wybierz opcje: ");
             System.out.println("1-Wyślij maila");
             System.out.println("2-Wyświetl otrzymane maile");
             System.out.println("3-Wyświetl wysłane maile");
@@ -117,10 +114,12 @@ public class Main {
                     System.out.println((mailService.getSentEmails(user)));
                     break;
                 case 4:
-                    System.out.println((mailService.deleteRecivedEmails(user)));
+                    mailService.deleteReceivedEmails(user);
+                    System.out.println("Maile zostały pomyślnie usunięte.");
                     break;
                 case 5:
-                    System.out.println((mailService.deleteSentEmails(user)));
+                    mailService.deleteSentEmails(user);
+                    System.out.println("Maile zostały pomyślnie usunięte.");
                     break;
                 case 6:
                     System.out.println("Do zobaczenia");
@@ -134,13 +133,12 @@ public class Main {
     }
 
     public static Mail createMail(User user, User receiver) {
-        System.out.println("Podaj tytyl: ");
+        System.out.println("Podaj tytył maila: ");
         String title = scanner.nextLine();
         System.out.println("Podaj treść maila: ");
         String description = scanner.nextLine();
         return new Mail(title, description, LocalDateTime.now(), user, receiver);
     }
-
 
     public static void main(String[] args) {
         User user = new User("John", "john@gmail.com", "john123", "hasloJohna");
@@ -154,7 +152,7 @@ public class Main {
         //Inbox inbox2 = new Inbox(user2);
         // mailService.getInboxes().add(inbox2);
 
-        Mail mail = new Mail("Tytuł", "Treść maila", LocalDateTime.now(), user2, new User("John", "john@gmail.com", "john123", "hasloJohna"));
+        Mail mail = new Mail("Tytuł maila", "Treść maila", LocalDateTime.now(), user2, new User("John", "john@gmail.com", "john123", "hasloJohna"));
         mailService.send(mail);
 
         getMenu(getUser());

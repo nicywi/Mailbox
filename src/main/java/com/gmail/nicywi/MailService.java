@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MailService {
     private final List<Inbox> inboxes = new ArrayList<>();
-    private final List<Mail> mails = new ArrayList<Mail>();
+    private static final List<Mail> mails = new ArrayList<Mail>();
 
     public void send(Mail mail) {
         mails.add(mail);
@@ -23,19 +23,16 @@ public class MailService {
                 .filter(mail -> mail.getSender().getLogin().equals(user.getLogin()))
                 .toList();
     }
-    public String deleteRecivedEmails(User user) {
-        List <Mail> operationList = mails.stream()
+    public static void deleteReceivedEmails(User user) {
+        mails.removeAll(mails.stream()
                 .filter(mail -> mail.getReceiver().getLogin().equals(user.getLogin()))
-                .toList();
-        mails.removeAll(operationList);
-        return "Maile zostały usunięte";
+                .toList());
     }
 
-    public String deleteSentEmails(User user) {
+    public static void deleteSentEmails(User user) {
         mails.removeAll(mails.stream()
                 .filter(mail -> mail.getSender().getLogin().equals(user.getLogin()))
                 .toList());
-        return "Maile zostały usunięte";
     }
 
     public List<Inbox> getInboxes() {

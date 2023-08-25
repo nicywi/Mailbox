@@ -20,9 +20,6 @@ public class Mail {
         this.receiver = receiver;
     }
 
-    public Mail() {
-    }
-
     Scanner scanner = new Scanner(System.in);
 
     public String getTitle() {
@@ -69,13 +66,12 @@ public class Mail {
 
     @Override
     public String toString() {
-        return "Mail{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", date=" + date.format(CUSTOM_FORMATTER) +
-                ", sender=" + sender.getName() +
-                ", receiver=" + receiver.getName() +
-                '}';
+        return "Mail: " +
+                "\nOd: " + sender.getName() +
+                "\nDo: " + receiver.getName() +
+                "\nData: " + date.format(CUSTOM_FORMATTER) +
+                "\nTytuł: " + title +
+                "\nTreść: " + description;
     }
 }
 
