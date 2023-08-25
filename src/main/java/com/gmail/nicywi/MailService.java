@@ -31,6 +31,13 @@ public class MailService {
         return "Maile zostały usunięte";
     }
 
+    public String deleteSentEmails(User user) {
+        mails.removeAll(mails.stream()
+                .filter(mail -> mail.getSender().getLogin().equals(user.getLogin()))
+                .toList());
+        return "Maile zostały usunięte";
+    }
+
     public List<Inbox> getInboxes() {
         return inboxes;
     }
