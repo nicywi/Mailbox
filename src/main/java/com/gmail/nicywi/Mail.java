@@ -2,6 +2,7 @@ package com.gmail.nicywi;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Mail {
@@ -64,12 +65,14 @@ public class Mail {
         this.receiver = receiver;
     }
 
+    final static DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
     @Override
     public String toString() {
         return "Mail{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", date=" + date +
+                ", date=" + date.format(CUSTOM_FORMATTER) +
                 ", sender=" + sender.getName() +
                 ", receiver=" + receiver.getName() +
                 '}';
