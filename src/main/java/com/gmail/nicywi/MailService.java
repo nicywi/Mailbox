@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MailService {
-    private final List<Inbox> inboxes = new ArrayList<>();
-    private static final List<Mail> mails = new ArrayList<Mail>();
+    //private final List<Inbox> inboxes = new ArrayList<>();
+    private final List<Mail> mails = new ArrayList<>();
 
     public void send(Mail mail) {
         mails.add(mail);
-        System.out.println("Mail został wysłany");
     }
 
     public List<Mail> getReceivedEmails(User user) {
@@ -23,23 +22,15 @@ public class MailService {
                 .filter(mail -> mail.getSender().getLogin().equals(user.getLogin()))
                 .toList();
     }
-    public static void deleteReceivedEmails(User user) {
+    public void deleteReceivedEmails(User user) {
         mails.removeAll(mails.stream()
                 .filter(mail -> mail.getReceiver().getLogin().equals(user.getLogin()))
                 .toList());
     }
 
-    public static void deleteSentEmails(User user) {
+    public void deleteSentEmails(User user) {
         mails.removeAll(mails.stream()
                 .filter(mail -> mail.getSender().getLogin().equals(user.getLogin()))
                 .toList());
-    }
-
-    public List<Inbox> getInboxes() {
-        return inboxes;
-    }
-
-    public List<Mail> getMails() {
-        return mails;
     }
 }

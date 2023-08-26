@@ -2,14 +2,13 @@ package com.gmail.nicywi;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;
-
-import static com.gmail.nicywi.EmailValidator.isValidEmail;
-
 public class Main {
 
     private static final UserDatabase userDatabase = new UserDatabase();
     private static final Scanner scanner = new Scanner(System.in);
     private static final MailService mailService = new MailService();
+    private static final EmailValidator emailValidator = new EmailValidator();
+    private static final EmailValidationService emailValidationService = new EmailValidationServiceImpl(emailValidator);
 
     public static User login() {
         System.out.println("LOGOWANIE");
@@ -18,7 +17,8 @@ public class Main {
         String login = scanner.nextLine();
         System.out.print("Podaj hasło: ");
         String password = scanner.nextLine();
-        return userDatabase.loginTest(login, password);
+        //potem w main robimy if null i dodajemy newuser
+        return (userDatabase.loginTest(login, password) == null) ? newUser() : userDatabase.loginTest(login, password);
     }
 
     public static User newUser() {
@@ -33,7 +33,7 @@ public class Main {
         System.out.print("Podaj email adres: ");
         String emailaddres = scanner.nextLine();
 
-        while (!isValidEmail(emailaddres)) {
+        while (!emailValidationService.isValidEmail(emailaddres)) {
             System.out.println(emailaddres + " jest niepoprawnym adresem e-mail.");
             System.out.println("Podaj inny adres email: ");
             emailaddres = scanner.nextLine();
@@ -57,7 +57,7 @@ public class Main {
         System.out.println("Podaj adres email odbiorcy: ");
         String emailaddres = scanner.nextLine();
 
-        while (!isValidEmail(emailaddres)) {
+        while (!emailValidationService.isValidEmail(emailaddres)) {
             System.out.println(emailaddres + " jest niepoprawnym adresem e-mail.");
             System.out.println("Podaj adres email: ");
             emailaddres = scanner.nextLine();
