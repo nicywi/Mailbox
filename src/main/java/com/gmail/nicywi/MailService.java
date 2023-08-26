@@ -33,4 +33,8 @@ public class MailService {
                 .filter(mail -> mail.getSender().getLogin().equals(user.getLogin()))
                 .toList());
     }
+
+    public List<Mail> getMails() {
+        return mails;
+    }
 }
