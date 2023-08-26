@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MailService {
     private final List<Inbox> inboxes = new ArrayList<>();
-    private static final List<Mail> mails = new ArrayList<Mail>();
+    private static final List<Mail> mails = new ArrayList<>();
 
     public void send(Mail mail) {
         mails.add(mail);
@@ -33,13 +33,5 @@ public class MailService {
         mails.removeAll(mails.stream()
                 .filter(mail -> mail.getSender().getLogin().equals(user.getLogin()))
                 .toList());
-    }
-
-    public List<Inbox> getInboxes() {
-        return inboxes;
-    }
-
-    public List<Mail> getMails() {
-        return mails;
     }
 }
