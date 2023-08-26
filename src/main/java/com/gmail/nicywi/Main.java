@@ -166,7 +166,7 @@ public class Main {
 //
 //        Mail mail = new Mail("Tytuł maila", "Treść maila", LocalDateTime.now(), user2, new User("John", "john@gmail.com", "john123", "hasloJohna"));
 //        mailService.send(mail);
-
+        System.out.println("MAILBOX");
         getMenu(getUser());
 
     }
