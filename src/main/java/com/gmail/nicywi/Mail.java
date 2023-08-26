@@ -27,6 +27,10 @@ public class Mail {
         return receiver;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     final DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     @Override

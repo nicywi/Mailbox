@@ -2,6 +2,7 @@ package com.gmail.nicywi;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;
+
 public class Main {
 
     private static final UserDatabase userDatabase = new UserDatabase();
@@ -37,7 +38,7 @@ public class Main {
             System.out.println("Podaj inny adres email: ");
             emailaddres = scanner.nextLine();
         }
-            System.out.println(emailaddres + " jest poprawnym adresem e-mail.");
+        System.out.println(emailaddres + " jest poprawnym adresem e-mail.");
 
         boolean addUserSuccess = userDatabase.addUserTest(login, password, name, emailaddres);
 
@@ -70,8 +71,8 @@ public class Main {
     public static User getUser() {
         //MENU LOGIN VS NEW USER
         System.out.println("Wybierz opcje: ");
-        System.out.println("1-login");
-        System.out.println("2-new user");
+        System.out.println("1-Logowanie");
+        System.out.println("2-Tworzenie nowego użytkownika");
         int choose = scanner.nextInt();
         return (choose == 1) ? login() : newUser();
     }
@@ -98,7 +99,8 @@ public class Main {
             System.out.println("3-Wyświetl wysłane maile");
             System.out.println("4-Usuń wszystkie otrzymane maile");
             System.out.println("5-Usuń wszystkie wysłane maile");
-            System.out.println("6-Wyjdź ze skrzynki");
+            System.out.println("6-Usuń wysłany mail");
+            System.out.println("7-Wyjdź ze skrzynki");
             int choose2 = scanner.nextInt();
 
             switch (choose2) {
@@ -121,6 +123,14 @@ public class Main {
                     System.out.println("Maile zostały pomyślnie usunięte.");
                     break;
                 case 6:
+                    System.out.println((mailService.getSentEmails(user)));
+                    System.out.println("Ktory email chcesz usunac? Wpisz tytuł maila");
+                    scanner.nextLine();
+                    String tytulMaila = scanner.nextLine();
+                    mailService.deleteOneSentEmail(user, tytulMaila);
+                    System.out.println("Mail został pomyślnie usunięty.");
+                    break;
+                case 7:
                     System.out.println("Do zobaczenia");
                     return;
                 default:
@@ -150,9 +160,12 @@ public class Main {
         User user2 = new User("Anna", "anna@gmail.com", "anna123", "hasloAnny");
         //Inbox inbox2 = new Inbox(user2);
         // mailService.getInboxes().add(inbox2);
-
-        Mail mail = new Mail("Tytuł maila", "Treść maila", LocalDateTime.now(), user2, new User("John", "john@gmail.com", "john123", "hasloJohna"));
-        mailService.send(mail);
+        Mail mail2 = new Mail("Tytul 2", "Tresc maila", LocalDateTime.now(), user, user2);
+//        mailService.send(mail2);
+//        mailService.deleteOneSentEmail(user, "Tytul 3");
+//
+//        Mail mail = new Mail("Tytuł maila", "Treść maila", LocalDateTime.now(), user2, new User("John", "john@gmail.com", "john123", "hasloJohna"));
+//        mailService.send(mail);
 
         getMenu(getUser());
 
