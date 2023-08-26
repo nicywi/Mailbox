@@ -104,6 +104,38 @@ public class MailServiceTest {
     }
 
     @Test
+    void testDeleteOneSentEmailSuccessful(){
+        //given
+        final MailService mailService = new MailService();
+        User user1 = new User("John", "john@wp.pl", "login123", "haslo123");
+        User user2 = new User("David", "david@gmail.com", "david1234", "haslo1234");
+        Mail mail = new Mail("Tytuł", "Treść", LocalDateTime.now(), user1, user2);
+        //when
+        mailService.send(mail);
+        mailService.deleteOneSentEmail(user1,"Tytuł");
+        //then
+        assertThat(mailService.getSentEmails(user1)).isEmpty();
+    }
+
+    @Test
+    void testDeleteOneSentEmailDeleteOnlyOneEmail(){
+        //given
+        final MailService mailService = new MailService();
+        User user1 = new User("John", "john@wp.pl", "login123", "haslo123");
+        User user2 = new User("David", "david@gmail.com", "david1234", "haslo1234");
+        Mail mail = new Mail("Tytuł", "Treść", LocalDateTime.now(), user1, user2);
+        Mail mail2 = new Mail("Tytuł 2", "Treść 2", LocalDateTime.now(), user1, user2);
+        //when
+        mailService.send(mail);
+        mailService.send(mail2);
+        mailService.deleteOneSentEmail(user1,"Tytuł 2");
+        //then
+        assertThat(mailService.getSentEmails(user1)).isNotEmpty();
+        assertThat(mailService.getSentEmails(user1)).containsExactlyInAnyOrder(mail);
+        assertThat(mailService.getSentEmails(user1)).doesNotContain(mail2);
+    }
+
+    @Test
     void testGetMailsIsEmpty(){
         //given
         final MailService mailService = new MailService();

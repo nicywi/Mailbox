@@ -22,6 +22,7 @@ public class MailService {
                 .filter(mail -> mail.getSender().getLogin().equals(user.getLogin()))
                 .toList();
     }
+
     public void deleteReceivedEmails(User user) {
         mails.removeAll(mails.stream()
                 .filter(mail -> mail.getReceiver().getLogin().equals(user.getLogin()))
@@ -32,6 +33,10 @@ public class MailService {
         mails.removeAll(mails.stream()
                 .filter(mail -> mail.getSender().getLogin().equals(user.getLogin()))
                 .toList());
+    }
+
+    public void deleteOneSentEmail(User user, String tytulMaila) {
+        mails.removeAll(mails.stream().filter(mail -> mail.getSender().getLogin().equals(user.getLogin())).filter(mail -> mail.getTitle().equals(tytulMaila)).toList());
     }
 
     public List<Mail> getMails() {
