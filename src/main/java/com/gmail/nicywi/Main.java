@@ -8,7 +8,6 @@ public class Main {
     private static final Scanner scanner = new Scanner(System.in);
     private static final MailService mailService = new MailService();
     private static final EmailValidator emailValidator = new EmailValidator();
-    private static final EmailValidationService emailValidationService = new EmailValidationServiceImpl(emailValidator);
 
     public static User login() {
         System.out.println("LOGOWANIE");
@@ -17,7 +16,7 @@ public class Main {
         String login = scanner.nextLine();
         System.out.print("Podaj hasło: ");
         String password = scanner.nextLine();
-        //potem w main robimy if null i dodajemy newuser
+        //if null i dodajemy newuser
         return (userDatabase.loginTest(login, password) == null) ? newUser() : userDatabase.loginTest(login, password);
     }
 
@@ -33,7 +32,7 @@ public class Main {
         System.out.print("Podaj email adres: ");
         String emailaddres = scanner.nextLine();
 
-        while (!emailValidationService.isValidEmail(emailaddres)) {
+        while (!emailValidator.isValidEmail(emailaddres)) {
             System.out.println(emailaddres + " jest niepoprawnym adresem e-mail.");
             System.out.println("Podaj inny adres email: ");
             emailaddres = scanner.nextLine();
@@ -57,7 +56,7 @@ public class Main {
         System.out.println("Podaj adres email odbiorcy: ");
         String emailaddres = scanner.nextLine();
 
-        while (!emailValidationService.isValidEmail(emailaddres)) {
+        while (!emailValidator.isValidEmail(emailaddres)) {
             System.out.println(emailaddres + " jest niepoprawnym adresem e-mail.");
             System.out.println("Podaj adres email: ");
             emailaddres = scanner.nextLine();

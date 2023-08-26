@@ -88,19 +88,6 @@ public class MailServiceTest {
         assertThat(mailService.getReceivedEmails(user2)).isEmpty();
     }
 
-    @Test
-    void testDeleteReceivedEmailsUnsuccessful(){
-        //given
-        final MailService mailService = new MailService();
-        User user1 = new User("John", "john@wp.pl", "login123", "haslo123");
-        User user2 = new User("David", "david@gmail.com", "david1234", "haslo1234");
-        Mail mail = new Mail("Tytuł", "Treść", LocalDateTime.now(), user1, user2);
-        //when
-        mailService.send(mail);
-        //TODO serio nie usuwamy tutaj nic?
-        //then
-        assertThat(mailService.getReceivedEmails(user2)).isNotEmpty();
-    }
 
     @Test
     void testDeleteSentEmailsSuccessful(){
@@ -114,20 +101,6 @@ public class MailServiceTest {
         mailService.deleteSentEmails(user1);
         //then
         assertThat(mailService.getSentEmails(user1)).isEmpty();
-    }
-
-    @Test
-    void testDeleteSentEmailsUnsuccessful(){
-        //given
-        final MailService mailService = new MailService();
-        User user1 = new User("John", "john@wp.pl", "login123", "haslo123");
-        User user2 = new User("David", "david@gmail.com", "david1234", "haslo1234");
-        Mail mail = new Mail("Tytuł", "Treść", LocalDateTime.now(), user1, user2);
-        //when
-        mailService.send(mail);
-        //TODO serio nie usuwamy tutaj nic?
-        //then
-        assertThat(mailService.getSentEmails(user1)).isNotEmpty();
     }
 
     @Test
